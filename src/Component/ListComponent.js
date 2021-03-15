@@ -21,15 +21,17 @@ const ListComponent = (props) => {
 
             </View>
             <View style={styles.contentView}>
-                <Text style={Styles.SongName} numberOfLines={2}>
-                    {props.Data.item.trackName}
+                <Text style={Styles.SongName}
+                    numberOfLines={2}
+                >
+                    {props.Data.item.trackName ? props.Data.item.trackName : ''}
                 </Text>
                 <View style={styles.subContentView}>
                     <Text style={Styles.ArtistName}>
-                        {props.Data.item.artistName}
+                        {props.Data.item.artistName ? props.Data.item.artistName : ''}
                     </Text>
                     <Text style={Styles.SongLength}>
-                        {CommonFun.convertMillis(props.Data.item.trackTimeMillis)}
+                        {props.Data.item.trackTimeMillis ? CommonFun.convertMillis(props.Data.item.trackTimeMillis) : ''}
                     </Text>
                 </View>
             </View>

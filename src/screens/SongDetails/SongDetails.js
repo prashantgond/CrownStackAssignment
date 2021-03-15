@@ -16,28 +16,30 @@ const SongDetails = (props) => {
         />
 
         <Text style={Styles.trackText}>
-          {songData.trackName}
+          {songData.trackName ? songData.trackName : ''}
         </Text>
 
         <Text
-          onPress={() => Linking.openURL(songData.artistViewUrl)}
+          onPress={() => songData.artistViewUrl ? Linking.openURL(songData.artistViewUrl) : ''}
           style={[Styles.artistTextStyle, { textDecorationLine: 'underline' }]}
         >
-          {songData.artistName}
+          {songData.artistName ? songData.artistName : ''}
         </Text>
 
         <Text style={Styles.txet2Style}>
           {songData.primaryGenreName + ' .' + " " + moment(songData.releaseDate).format("YYYY") + ' ' + '(' + songData.country + ')'}
         </Text>
 
-        <Text style={Styles.txet2Style}>
-          {'Track count: ' + songData.trackCount}
-        </Text>
+        {songData.trackCount ?
+          <Text style={Styles.txet2Style}>
+            {'Track count: ' + songData.trackCount}
+          </Text> : null
+        }
 
 
         <View style={Styles.previewButtonStyle}>
           <Text
-            onPress={() => Linking.openURL(songData.previewUrl)}
+            onPress={() => songData.previewUrl ? Linking.openURL(songData.previewUrl) : ''}
             style={[Styles.text1Style, { color: '#fff' }]}>
             {'Preview'}
           </Text>
@@ -48,27 +50,33 @@ const SongDetails = (props) => {
           {'More Details: '}
         </Text>
 
-        <Text style={[Styles.text1Style, { marginTop: 10 }]}>
-          {'Track name: ' + songData.trackCensoredName}
-        </Text>
+        {songData.trackCensoredName ?
+          <Text style={[Styles.text1Style, { marginTop: 10 }]}>
+            {'Track name: ' + songData.trackCensoredName}
+          </Text>
+          : null}
 
-        <Text style={[Styles.text1Style, { marginTop: 5 }]}>
-          {'Artist name: ' + songData.collectionCensoredName}
-        </Text>
+        {songData.collectionCensoredName ?
+          <Text style={[Styles.text1Style, { marginTop: 5 }]}>
+            {'Artist name: ' + songData.collectionCensoredName}
+          </Text> : null}
 
-        <Text style={[Styles.text1Style, { marginTop: 5 }]}>
-          {'Release date: ' + moment(songData.releaseDate).format("MMMM-DD-YYYY")}
-        </Text>
+        {songData.releaseDate ?
+          <Text style={[Styles.text1Style, { marginTop: 5 }]}>
+            {'Release date: ' + moment(songData.releaseDate).format("MMMM-DD-YYYY")}
+          </Text> : null}
 
-        <Text style={[Styles.text1Style, { fontWeight: '400', marginTop: 5 }]}>
-          {'Track price: ' + songData.trackPrice + ' ' + songData.currency}
-        </Text>
+        {songData.trackPrice ?
+          <Text style={[Styles.text1Style, { fontWeight: '400', marginTop: 5 }]}>
+            {'Track price: ' + songData.trackPrice + ' ' + songData.currency}
+          </Text> : null}
 
-        <Text
-          onPress={() => Linking.openURL(songData.collectionViewUrl)}
-          style={[Styles.SongName, { paddingTop: 5, textDecorationLine: 'underline' }]}>
-          {'Get collection of ' + songData.artistName}
-        </Text>
+        {songData.artistName ?
+          <Text
+            onPress={() => songData.collectionViewUrl ? Linking.openURL(songData.collectionViewUrl) : ''}
+            style={[Styles.SongName, { paddingTop: 5, textDecorationLine: 'underline' }]}>
+            {'Get collection of ' + songData.artistName}
+          </Text> : null}
       </ScrollView>
     </View>
   )
